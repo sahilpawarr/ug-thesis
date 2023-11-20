@@ -35,8 +35,8 @@ class color:
    END = '\033[0m'
    
 #Load the data
-events = pd.read_csv('C:/UG Thesis/Kaggle Data/events.csv')
-info = pd.read_csv('C:/UG Thesis/Kaggle Data/ginf.csv')
+events = pd.read_csv('"C:\UG Thesis\Dataset\events.csv"')
+info = pd.read_csv('"C:\UG Thesis\Dataset\ginf.csv"')
 df=info.merge(events,how='left')
 df.head()
 
