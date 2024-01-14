@@ -45,13 +45,13 @@ events = events.merge(info[['id_odsp', 'country', 'date']], on='id_odsp', how='l
 extract_year = lambda x: datetime.strptime(x, "%Y-%m-%d").year
 events['year'] = [extract_year(x) for key, x in enumerate(events['date'])]
 
-#We create a new dataset named Shots that will contain everything related to this action of the game and exclude the rest
+#Create a new dataset named Shots that will contain everything related to this action of the game and exclude the rest
 shots = events[events.event_type==1]
 shots['player'] = shots['player'].str.title()
 shots['player2'] = shots['player2'].str.title()
 shots['country'] = shots['country'].str.title()
 
-# let's see how the different possible outcomes a shot can have are distributed
+# Checking how the different possible outcomes a shot can have are distributed
 pie = shots[['shot_outcome', 'id_event']].groupby('shot_outcome').count().reset_index().rename(columns={'id_event': 'count'})
 
 pie.shot_outcome = pie.shot_outcome.astype(str)
@@ -66,7 +66,7 @@ plt.title("Shot Outcomes", fontsize=26, fontfamily='serif')
 plt.tight_layout()
 plt.show()
 
-#Now let's explore where shots tend to be placed by the players.
+#Exploring where shots tend to be placed by the players.
 bar = shots[['shot_place', 'id_event']].groupby('shot_place').count().reset_index().rename(columns={'id_event': 'count'})
 bar.shot_place = bar.shot_place.astype(int)
 bar.shot_place = bar.shot_place.replace({1: 'Bit too high', 2: 'Blocked', 3: 'Bottom left corner', 4: 'Bottom right corner', \
@@ -87,7 +87,7 @@ plt.tight_layout()
 ax.grid(color='black', linestyle='-', linewidth=0.1, axis='x')
 plt.show()
 
-# Now we'll explore something that will be quite important for our xG model: which percentage of shots end up as goals. We'll divide this analysis for the different leagues and across years, to check if there are differences in the patterns through different parts of the world or different years.
+# Exploring something that will be quite important for our xG model: which percentage of shots end up as goals. We'll divide this analysis for the different leagues and across years, to check if there are differences in the patterns through different parts of the world or different years.
 goals  = shots[['is_goal', 'id_event', 'country']].groupby(['is_goal', 'country']).count().reset_index().rename(columns={'id_event': 'count'})
 goals.is_goal = goals.is_goal.replace({1: 'Goal', 0: 'No Goal'})
 
