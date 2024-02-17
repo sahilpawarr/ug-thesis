@@ -1,5 +1,6 @@
-# ug-thesis
 _The following is the abstract for my undergraduate thesis. The code, report and dataset for the project can be found in the files of this repository. Do reach out if you want to discuss this further_
+
+# ug-thesis
 
 Shooting in association football is a critical aspect of the game, and its impact on the final scoreline has long been recognized. However, there is much more to shooting than just scoring goals. In this research paper, the author explores the potential applications of Expected Goals (xG) models for analyzing player performances for talent recruitment in football.
 
